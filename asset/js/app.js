@@ -17,10 +17,12 @@ todoApp.controller('TodoCtrl', function ($scope, $http) {
 	}
 	
 	$scope.addTask = function(){
-		var newTask = {title: $scope.taskTitle};
+		var newTask = {title: $scope.taskTitle, position: $scope.taskPosition};
+		//var taskPos = {position: $scope.taskPosition};
 		$http.post('api/tasks', newTask).success(function(data){
 			$scope.refresh();
 			$scope.taskTitle = '';
+			$scope.taskPosition = '';
 		}).error(function(data){
 			alert(data.error);
 		});

@@ -39,13 +39,14 @@ class Api extends REST_Controller
 		}
 		else{
 			$data = array(
-				'title' => $this->post('title')
+				'title' => $this->post('title'),
+				'position' => $this->post('position')
 			);
 		}
 		$this->db->insert('task',$data);
 		if($this->db->insert_id() > 0)
 		{
-			$message = array('id' => $this->db->insert_id(), 'title' => $this->post('title'));
+			$message = array('id' => $this->db->insert_id(), 'title' => $this->post('title'),'position' => $this->post('position'));
 			$this->response($message, 200); // 200 being the HTTP response code
 		}
 	}
