@@ -74,7 +74,7 @@ class Api extends REST_Controller
 		
 		$data = array(
 			'title'		=> $this->put('title'),
-			'status'	=> $this->put('status')
+			'position'	=> $this->put('position')
 		);
 		$this->task_model->update_task($this->put('id'), $data);
 		$message = array('success' => $this->put('title').' Updated!');

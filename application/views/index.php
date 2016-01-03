@@ -24,6 +24,7 @@
 				<h1>Todo App</h1>
 				
 				<h2 data-ng-show="tasks.length == 0">No task yet!</h2>
+				<h3>{{ $tasks.length}}</h3>
 			</div>
 
 			<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span></button>
@@ -55,12 +56,13 @@
 
 
 
-<!--			<form style="form-inline" role="form" ng-submit="addTask()">-->
-<!--				<div class="form-group col-md-10">-->
-<!--					<input type="text" class="form-control" name="title" ng-model="taskTitle" placeholder="Enter task title" required>-->
-<!--				</div>-->
-<!--				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>-->
-<!--			</form>-->
+			<form style="form-inline" role="form" ng-submit="addTask()">
+				<div class="form-group col-md-10">
+					<input type="text" class="form-control" name="title" ng-model="taskTitle" placeholder="Enter task title" required>
+					<input type="text" class="form-control" name="position" ng-model="taskPosition" placeholder="Enter task title" required>
+				</div>
+				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
+			</form>
 
 		</div>
 
@@ -95,6 +97,9 @@
 
 			</div>
 		</div>
+
+
+
 
 
 
