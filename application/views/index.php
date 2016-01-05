@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 	<head>
-		
+
 
 		<title>Todo App with CodeIgniter + AngularJS</title>
 
@@ -20,11 +20,11 @@
 		<!-- Begin page content -->
 
 <!--		<div class="container">-->
-		
+
 			<div style="text-align:center">
 				<h1>Todo App</h1>
 				<h3>{{ $tasks.length}}</h3>
-				<h2 data-ng-show="tasks.length == 0">No task yet!</h2>
+				<h2 data-ng-show="users.length == 0">No task yet!</h2>
 
 			</div>
 
@@ -40,7 +40,7 @@
 
 			<input type="text" class="form-control" ng-model="searchKeyword" placeholder="Search..." />
 
-			<div class="col-md-12" data-ng-show="tasks.length > 0">
+			<div class="col-md-12" data-ng-show="users.length > 0">
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -52,16 +52,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr data-ng-repeat="task in tasks track by $index | filter: searchKeyword">
+						<tr data-ng-repeat="user in users track by $index | filter: searchKeyword">
 							<td>{{ $index + 1 }}</td>
-							<td>{{ tasks[$index].fname }}</td>
-							<td>{{ tasks[$index].lname }}</td>
-							<td>{{ tasks[$index].email }}</td>
+							<td>{{ users[$index].fname }}</td>
+							<td>{{ users[$index].lname }}</td>
+							<td>{{ users[$index].email }}</td>
 <!--							<td><input class="todo" type="text" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTask(tasks[$index])" ng-model="tasks[$index].fname"></td>-->
 <!--							<td><input class="todo" type="text" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTask(tasks[$index])" ng-model="tasks[$index].lname"></td>-->
 <!--							<td><input class="todo" type="text" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTask(tasks[$index])" ng-model="tasks[$index].email"></td>-->
 <!--							<td style="text-align:center"><input class="todo" type="checkbox" ng-change="updateTask(tasks[$index])"ng-model="tasks[$index].status" ng-true-value="'1'" ng-false-value="'0'"></td>-->
-							<td style="text-align:center"><a class="btn btn-xs btn-default" ng-click="deleteTask(tasks[$index])"><span class="glyphicon glyphicon-trash"></span></a></td>
+							<td style="text-align:center"><a class="btn btn-xs btn-default" ng-click="deleteTask(users[$index])"><span class="glyphicon glyphicon-trash"></span></a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -120,7 +120,53 @@
 
 <!--		<script src="--><?php //echo site_url('asset/js/bootstrap.min.js') ?><!--"></script>-->
 		<script src="<?php echo site_url('asset/js/angular.min.js') ?>"></script>
-		<script src="<?php echo site_url('asset/js/app.js') ?>"></script>
+<!--		<script src="--><?php //echo site_url('asset/js/app.js') ?><!--"></script>-->
+
+<script>
+	var todoApp = angular.module('todoApp', []);
+
+	todoApp.controller('TodoCtrl', function ($scope, $http) {
+
+		$http.get('api/users').success(function(data){
+			$scope.users = data;
+		}).error(function(data){
+			$scope.users = data;
+		});
+
+		$scope.refresh = function(){
+			$http.get('api/users').success(function(data){
+				$scope.users = data;
+			}).error(function(data){
+				$scope.users = data;
+			});
+		}
+
+		$scope.addTask = function(){
+			var newTask = {fname: $scope.ngFname, email: $scope.ngEmail};
+			//var taskPos = {position: $scope.taskPosition};
+			$http.post('api/users', newTask).success(function(data){
+				$scope.refresh();
+				$scope.ngFname = '';
+				$scope.ngEmail = '';
+			}).error(function(data){
+				alert(data.error);
+			});
+		}
+
+		$scope.deleteTask = function(user){
+			$http.delete('api/users/' + user.id);
+			$scope.users.splice($scope.users.indexOf(user),1);
+		}
+
+		$scope.updateTask = function(user){
+			$http.put('api/users', user).error(function(data){
+				alert(data.error);
+			});
+			$scope.refresh();
+		}
+
+	});
+</script>
 
 	</body>
 </html>

@@ -11,8 +11,8 @@ class Api extends REST_Controller
         
     }
 	
-	// get all tasks if no parameter supplied
-	public function tasks_get()
+	// get all users if no parameter supplied
+	public function users_get()
 	{
 		if(! $this->get('id'))
 		{
@@ -51,7 +51,7 @@ class Api extends REST_Controller
 //		}
 //	}
 
-	public function tasks_post()
+	public function users_post()
 	{
 		if(! $this->post('fname'))
 		{
@@ -78,7 +78,7 @@ class Api extends REST_Controller
 		}
 	}
 	
-	public function tasks_delete($id=NULL)
+	public function users_delete($id=NULL)
 	{
 		if($id == NULL)
 		{
@@ -91,7 +91,7 @@ class Api extends REST_Controller
 		}
 	}
 	
-	public function tasks_put()
+	public function users_put()
 	{
 		//perform validation
 		if(! $this->put('title'))
