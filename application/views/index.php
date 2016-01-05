@@ -37,6 +37,7 @@
 				</div>
 				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
 			</form>
+			
 			<div class="col-md-12" data-ng-show="tasks.length > 0">
 				<table class="table table-hover">
 					<thead>
