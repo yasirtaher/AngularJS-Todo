@@ -31,22 +31,49 @@ class Api extends REST_Controller
 		}
 	}
 	
+//	public function tasks_post()
+//	{
+//		if(! $this->post('title'))
+//		{
+//			$this->response(array('error' => 'Missing post data: title'), 400);
+//		}
+//		else{
+//			$data = array(
+//				'title' => $this->post('title'),
+//				'position' => $this->post('position')
+//			);
+//		}
+//		$this->db->insert('task',$data);
+//		if($this->db->insert_id() > 0)
+//		{
+//			$message = array('id' => $this->db->insert_id(), 'title' => $this->post('title'),'position' => $this->post('position'));
+//			$this->response($message, 200); // 200 being the HTTP response code
+//		}
+//	}
+
 	public function tasks_post()
 	{
-		if(! $this->post('title'))
+		if(! $this->post('fname'))
 		{
-			$this->response(array('error' => 'Missing post data: title'), 400);
+			$this->response(array('error' => 'Missing post data: fname'), 400);
 		}
 		else{
 			$data = array(
-				'title' => $this->post('title'),
-				'position' => $this->post('position')
+				'fname' => $this->post('fname'),
+				'email' => $this->post('email'),
+				'password' => '123',
+				'lname' => 'Last Name',
+				'phone' => '123456',
+				'gender' => 1,
+				'is_active' => 1,
+				'type' => 1
 			);
+			//var_dump($data);
 		}
-		$this->db->insert('task',$data);
+		$this->db->insert('user',$data);
 		if($this->db->insert_id() > 0)
 		{
-			$message = array('id' => $this->db->insert_id(), 'title' => $this->post('title'),'position' => $this->post('position'));
+			$message = array('user_id' => $this->db->insert_id(), 'fname' => $this->post('fname'),'email' => $this->post('email'));
 			$this->response($message, 200); // 200 being the HTTP response code
 		}
 	}

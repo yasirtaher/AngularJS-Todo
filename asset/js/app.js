@@ -17,12 +17,12 @@ todoApp.controller('TodoCtrl', function ($scope, $http) {
 	}
 	
 	$scope.addTask = function(){
-		var newTask = {title: $scope.taskTitle, position: $scope.taskPosition};
+		var newTask = {fname: $scope.ngFname, email: $scope.ngEmail};
 		//var taskPos = {position: $scope.taskPosition};
 		$http.post('api/tasks', newTask).success(function(data){
 			$scope.refresh();
-			$scope.taskTitle = '';
-			$scope.taskPosition = '';
+			$scope.ngFname = '';
+			$scope.ngEmail = '';
 		}).error(function(data){
 			alert(data.error);
 		});

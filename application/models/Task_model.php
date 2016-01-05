@@ -9,7 +9,7 @@ class Task_model extends CI_Model {
 	
 	public function get_all()
 	{
-		$query = $this->db->get('task');
+		$query = $this->db->get('user');
 		return $query->result();
 	}
 	
@@ -22,13 +22,13 @@ class Task_model extends CI_Model {
 	
 	public function delete_task($id)
 	{
-		$this->db->where('id',$id);
-		$this->db->delete('task');
+		$this->db->where('user_id',$id);
+		$this->db->delete('user');
 	}
 	
 	public function update_task($id, $data)
 	{
-		$this->db->where('id',$id);
-		$this->db->update('task',$data);
+		$this->db->where('user_id',$id);
+		$this->db->update('user',$data);
 	}
 }
