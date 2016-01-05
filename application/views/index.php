@@ -37,7 +37,9 @@
 				</div>
 				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>
 			</form>
-			
+
+			<input type="text" class="form-control" ng-model="searchKeyword" placeholder="Search..." />
+
 			<div class="col-md-12" data-ng-show="tasks.length > 0">
 				<table class="table table-hover">
 					<thead>
@@ -50,11 +52,14 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr data-ng-repeat="task in tasks track by $index">
+						<tr data-ng-repeat="task in tasks track by $index | filter: searchKeyword">
 							<td>{{ $index + 1 }}</td>
-							<td><input class="todo" type="text" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTask(tasks[$index])" ng-model="tasks[$index].fname"></td>
-							<td><input class="todo" type="text" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTask(tasks[$index])" ng-model="tasks[$index].lname"></td>
-							<td><input class="todo" type="text" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTask(tasks[$index])" ng-model="tasks[$index].email"></td>
+							<td>{{ tasks[$index].fname }}</td>
+							<td>{{ tasks[$index].lname }}</td>
+							<td>{{ tasks[$index].email }}</td>
+<!--							<td><input class="todo" type="text" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTask(tasks[$index])" ng-model="tasks[$index].fname"></td>-->
+<!--							<td><input class="todo" type="text" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTask(tasks[$index])" ng-model="tasks[$index].lname"></td>-->
+<!--							<td><input class="todo" type="text" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTask(tasks[$index])" ng-model="tasks[$index].email"></td>-->
 <!--							<td style="text-align:center"><input class="todo" type="checkbox" ng-change="updateTask(tasks[$index])"ng-model="tasks[$index].status" ng-true-value="'1'" ng-false-value="'0'"></td>-->
 							<td style="text-align:center"><a class="btn btn-xs btn-default" ng-click="deleteTask(tasks[$index])"><span class="glyphicon glyphicon-trash"></span></a></td>
 						</tr>
@@ -116,5 +121,6 @@
 <!--		<script src="--><?php //echo site_url('asset/js/bootstrap.min.js') ?><!--"></script>-->
 		<script src="<?php echo site_url('asset/js/angular.min.js') ?>"></script>
 		<script src="<?php echo site_url('asset/js/app.js') ?>"></script>
+
 	</body>
 </html>
