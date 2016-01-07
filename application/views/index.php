@@ -67,17 +67,6 @@
 				</table>
 			</div>
 
-
-
-<!---->
-<!--			<form style="form-inline" role="form" ng-submit="addTask()">-->
-<!--				<div class="form-group col-md-10">-->
-<!--					<input type="text" class="form-control" name="fname" ng-model="ngFname" placeholder="Enter task title" required>-->
-<!--					<input type="text" class="form-control" name="email" ng-model="ngEmail" placeholder="Enter task title" required>-->
-<!--				</div>-->
-<!--				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></button>-->
-<!--			</form>-->
-
 		</div>
 		</div>
 
